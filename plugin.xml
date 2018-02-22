@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com-artemisoftnian-plugins-unityads2" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>UnityAds2</name>
+  <js-module name="UnityAds2" src="www/UnityAds2.js">
+    <clobbers target="unityads2" />
+  </js-module>
+
+  <platform name="android">
+
+    <config-file target="config.xml" parent="/*">
+      <feature name="UnityAds2">
+        <param name="android-package"  value="com.artemisoftnian.plugin.UnityAds2"/>
+      </feature>
+    </config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/*">		
+			<uses-permission android:name="android.permission.INTERNET"/>
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    </config-file>   
+
+    
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <activity
+            android:name="com.unity3d.ads.adunit.AdUnitActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+            android:hardwareAccelerated="true"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.unity3d.ads.adunit.AdUnitTransparentActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+            android:hardwareAccelerated="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.unity3d.ads.adunit.AdUnitTransparentSoftwareActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+            android:hardwareAccelerated="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.unity3d.ads.adunit.AdUnitSoftwareActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+            android:hardwareAccelerated="false"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+    </config-file> 
+
+
+    <source-file src="src/android/com/artemisoftnian/plugin/UnityAds2.java"   target-dir="src/com/artemisoftnian/plugin" />
+
+
+    <!--resource-file src="libs/unity-ads.aar" target="/libs/unity-ads.aar" /-->
+    <resource-file src="src/android/libs/classes.jar" target="/libs/classes.jar" />
+		<framework src="src/android/unityads2.gradle" custom="true" type="gradleReference" />
+
+
+
+  </platform>
+
+</plugin>

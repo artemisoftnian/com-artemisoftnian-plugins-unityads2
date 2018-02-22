@@ -1,0 +1,17 @@
+{
+  "name": "com-artemisoftnian-plugins-unityads2",
+  "version": "0.0.1",
+  "description": "Unity Ads 2.1.2 plugin for cordova platform",
+  "cordova": {
+    "id": "com-artemisoftnian-plugins-unityads2",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "",
+  "license": "ISC"
+}
