@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="com-artemisoftnian-plugins-unityads2" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-  <name>UnityAds2</name>
+  <name>UnityAds2</name>  
+  <hook type="after_prepare" src="afterPrepareScript.js" />
   <js-module name="UnityAds2" src="www/UnityAds2.js">
     <clobbers target="unityads2" />
   </js-module>
@@ -17,8 +18,7 @@
 			<uses-permission android:name="android.permission.INTERNET"/>
 			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     </config-file>   
-
-    
+ 
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
         <activity
             android:name="com.unity3d.ads.adunit.AdUnitActivity"
@@ -42,16 +42,24 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
     </config-file> 
 
-
     <source-file src="src/android/com/artemisoftnian/plugin/UnityAds2.java"   target-dir="src/com/artemisoftnian/plugin" />
-
 
     <!--resource-file src="libs/unity-ads.aar" target="/libs/unity-ads.aar" /-->
     <resource-file src="src/android/libs/classes.jar" target="/libs/classes.jar" />
 		<framework src="src/android/unityads2.gradle" custom="true" type="gradleReference" />
 
 
-
   </platform>
+
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="UnityAds2">
+        <param name="ios-package" value="UnityAds2" />
+      </feature>
+    </config-file>
+    <dependency id="cordova-plugin-add-swift-support" version="1.7.0" />
+    <framework src="src/ios/UnityAds.framework" custom="true" />
+    <source-file src="src/ios/UnityAds2.swift" />
+  </platform>  
 
 </plugin>

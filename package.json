@@ -1,17 +1,20 @@
 {
   "name": "com-artemisoftnian-plugins-unityads2",
-  "version": "0.0.1",
-  "description": "Unity Ads 2.1.2 plugin for cordova platform",
+  "version": "2.2.0",
+  "description": "Unity Ads plugin for cordova platform",
   "cordova": {
     "id": "com-artemisoftnian-plugins-unityads2",
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   },
   "keywords": [
     "ecosystem:cordova",
-    "cordova-android"
+    "cordova-android",
+    "cordova-ios",
+    "unityads"
   ],
-  "author": "",
-  "license": "ISC"
+  "author": "Waldemar Medina (hackinc2000)",
+  "license": "MIT"
 }
