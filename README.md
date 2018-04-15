@@ -5,7 +5,7 @@ Cordova / PhoneGap Plugin for UnityAds ver 2.x
 ## Contents
 
 1.  [Description](#description)
-2.  [Plugin Background](#history)
+2.  [Plugin Background](#plugin-background)
 3.  [Features](#features)
 4.  [Quick Start](#quick-start)
 5.  [Installation](#installation)
@@ -94,6 +94,7 @@ UnityAdsInit(gameId, isTest, isDebug, fn);
 // Video Ads Related (Regular/Rewarded)
 ShowVideoAd(videoPlacementId, fn);
 GetPlacementState(videoAdPlacementId, fn);
+```
 
 
 ## Screenshots
