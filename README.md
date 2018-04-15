@@ -120,7 +120,7 @@ Check Out my [UnityAds addon for Construct 3](https://www.construct.net/make-gam
 
 ## Donations
 
-If this project help you reduce time to develop or You simple you found it usefull please consider give me a cup of coffee. I like pizza too :)
+Now that You end your reading, (I know You where curious) please consider supporting Artemisoftnian with a donation a cup of coffee or maybe a slice of pizza :)
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4RK9RWFNTBNUA)
 
