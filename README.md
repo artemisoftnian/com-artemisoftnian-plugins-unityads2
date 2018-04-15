@@ -107,7 +107,7 @@ Android Video Ads
 iOS Video Ads
 
 | ![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_1.png) | ![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_2.png) | ![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_3.png) |
-
+|--|--|--|
 
 * Important DONT GET BANNED: Please read carfully the [Unity Monetization Services Terms of Service](https://unity3d.com/legal/monetization-services-terms-of-service).
 
