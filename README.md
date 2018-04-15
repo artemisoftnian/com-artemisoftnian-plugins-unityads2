@@ -1,152 +1,125 @@
-Cordova UnityAds 2 plugin
-====================
-# Overview #
-Show unityads video ad and rewarded video ad (pays high $0.05 per ad view).
+## UnityAds 2 Plugin 
 
-[android, ios] [cordova cli] [cocoon] [phonegap build service]
+Cordova / PhoneGap Plugin for UnityAds ver 2.x
 
-Requires unityads account http://unityads.unity3d.com
+## Contents
 
-ANDROID VERSION - UnityAds SDK v2.1.2 November 27th, 2017<br>
-IOS VERSION - UnityAds SDK v1.5.6 January 5th, 2016
+1.  [Description](#description)
+2.  [Plugin Background](#history)
+3.  [Features](#features)
+4.  [Quick Start](#quick-start)
+5.  [Installation](#installation)
+6.  [Usage](#usage)
+7.  [Methods](#api)
+8.  [Screenshots](#screenshots)
+9.  [Credits](#credits)
+10. [Donations](#donations)
 
-This is open source cordova plugin.
+## DESCRIPTION
 
-# IMPORTANT - THIS PLUGIN STILL NOT USABLE #
+This Cordova / PhoneGap plugin enables the integration of Unity Ads video ads into your cordova mobile games or apps in a way that both increases player engagement and puts more money in your pocket over the gamer’s lifetime. Unity Ads offers the highest Average Revenue Per User (ARPU) of any global rewarded video ad network.
 
-# Change log #
-```c
 
-1.0.0
-	Updated SDK v2.1.2
+## PLUGIN BACKGROUND
+
+A couple of years ago, and after a great mistake, I got banned from Google AdsMob network. After appels to the mercy of Google, explaining what happens... I remain banned for life.  This put me on a very bad situation those days, with a very short list of good monetizing alternatives.  This ends the day I learn about UnityAds
+
+After the end of the UnityAds 1.x Api era, I have to move forward and Implement UnityAds 2.x on my projects. Implement it on the Unity Game Engine was a breeze, But then I didn't found any solutions to implement version 2.x on my html5, cordova, construct 2 or 3 projects.  That my friends, makes this cordova plugin a reality. Oh well, it was basically only necessity!
+
+## FEUTURES
+
+Platforms supported:
+- [x] iOS, via SDK v2.x.x (see [Release Notes](https://github.com/Unity-Technologies/unity-ads-android))
+- [x] Android, via Android SDK v2.x.x (see [Release Notes](https://github.com/Unity-Technologies/unity-ads-ios))
+
+Ad Types:
+- [x] Non Rewarded Video
+- [x] Rewarded Video
+
+
+## QUICK START
+```bash
+	# create a demo project
+    cordova create test1 com.rjfun.test1 Test1
+    cd test1
+    cordova platform add android
+    cordova platform add ios
+
+    # now add the plugin, cordova CLI will handle dependency automatically
+    cordova plugin add com-artemisoftnian-plugins-unityads2
+
+    # now remove the default www content, copy the demo html file to www
+    rm -r www/*;
+    cp plugins/com-artemisoftnian-plugins-unityads2/test/* www/;
+
+	# now build and run the demo in your device or emulator
+    cordova prepare; 
+    cordova run android; 
+    cordova run ios;
+    # or import into Xcode / eclipse
 ```
 
-# Install plugin #
+## INSTALLATION
 
-## Cordova cli ##
-https://cordova.apache.org/docs/en/edge/guide_cli_index.md.html#The%20Command-Line%20Interface - npm install -g cordova@6.0.0
-```c
-cordova plugin add cordova-plugin-ad-unityads2
-(when build error, use github url: cordova plugin add cordova plugin add https://github.com/hackinc2000/cordova-plugin-ad-unityads2)
+* If use with Cordova CLI:
+```bash
+cordova plugin add com-artemisoftnian-plugins-unityads2
 ```
 
-## Xdk ##
-https://software.intel.com/en-us/intel-xdk - Download XDK - XDK PORJECTS - [specific project] - CORDOVA HYBRID MOBILE APP SETTINGS - Plugin Management - Add Plugins to this Project - Third Party Plugins -
-```c
-Plugin Source: Cordova plugin registry
-Plugin ID: cordova-plugin-ad-unityads2
-```
+* Using NPM
+npm install com-artemisoftnian-plugins-unityads2
 
-```c
-Fix crosswalk build error:
-crosswalk 11 build error so use crosswalk upper version (crosswalk 12 or 14)
-```
-<img src="https://raw.githubusercontent.com/hackinc2000/cordova-plugin-ad-unityads2/master/doc/fix_crosswalk_build_error.png"><br>
 
-## Cocoon ##
-https://cocoon.io - Create project - [specific project] - Setting - Plugins - Custom - Git Url: https://github.com/hackinc2000/cordova-plugin-ad-unityads2.git - INSTALL - Save<br>
+## USAGE
 
-## Phonegap build service (config.xml) ##
-https://build.phonegap.com/ - Apps - [specific project] - Update code - Zip file including config.xml
-```c
-<gap:plugin name="cordova-plugin-ad-unityads2" source="npm" />
-```
+Show Mobile Ad with single line of javascript code.
 
-## Construct2 ##
-construct2 plugin - Links are dead, keep for future reference<br>
-https://dl.dropboxusercontent.com/u/186681453/pluginsforcordova/index.html<br>
-How to install c2 native plugins in xdk, cocoon and cordova cli<br>
-https://plus.google.com/102658703990850475314/posts/XS5jjEApJYV
+Step 1: Create a new project for the desire platform in [UnityAds portal](https://operate.dashboard.unity3d.com), then write it in your javascript code.
 
-# Server setting #
-```c
-```
-
-<img src="https://raw.githubusercontent.com/hackinc2000/cordova-plugin-ad-unityads2/master/doc/gameId1.png"><br>
-<img src="https://raw.githubusercontent.com/hackinc2000/cordova-plugin-ad-unityads2/master/doc/gameId2.png"><br>
-<img src="https://raw.githubusercontent.com/hackinc2000/cordova-plugin-ad-unityads2/master/doc/gameId3.png"><br>
-<img src="https://raw.githubusercontent.com/hackinc2000/cordova-plugin-ad-unityads2/master/doc/gameId4.png">
-
-# API #
 ```javascript
-var gameId = "REPLACE_THIS_WITH_YOUR_GAME_ID";
-var videoAdPlacementId = "defaultZone";
-var rewardedVideoAdPlacementId = "rewardedVideoZone";
-var isTest = true;
-/*
-var gameId;
-var videoAdPlacementId;
-var rewardedVideoAdPlacementId;
-var isTest = true;
-//android
-if (navigator.userAgent.match(/Android/i)) {
-	gameId = "REPLACE_THIS_WITH_YOUR_GAME_ID";
-	videoAdPlacementId = "defaultZone";
-	rewardedVideoAdPlacementId = "rewardedVideoZone";
-}
-//ios
-else if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
-	gameId = "REPLACE_THIS_WITH_YOUR_GAME_ID";
-	videoAdPlacementId = "defaultZone";
-	rewardedVideoAdPlacementId = "rewardedVideoZone";
-}
-*/
-
-document.addEventListener("deviceready", function(){
-	//if no license key, 2% ad traffic its been share for devevelopmet support.
-	//you can get paid license key: https://store.artemisoftnian.com/cordova_plugin_paid_license
-	//window.unityads.setLicenseKey("yourEmailId@yourEmaildDamin.com", "yourLicenseKey");
-
-	window.unityads.setUp(gameId, videoAdPlacementId, rewardedVideoAdPlacementId, isTest);
-	
-	//
-	window.unityads.onVideoAdLoaded = function() {
-		alert('onVideoAdLoaded');
-	};	
-	window.unityads.onVideoAdShown = function() {
-		alert('onVideoAdShown');
-	};
-	window.unityads.onVideoAdHidden = function() {
-		alert('onVideoAdHidden');
-	};
-	//
-	window.unityads.onRewardedVideoAdLoaded = function() {
-		alert('onRewardedVideoAdLoaded');
-	};	
-	window.unityads.onRewardedVideoAdShown = function() {
-		alert('onRewardedVideoAdShown');
-	};
-	window.unityads.onRewardedVideoAdHidden = function() {
-		alert('onRewardedVideoAdHidden');
-	};	
-	window.unityads.onRewardedVideoAdCompleted = function() {
-		alert('onRewardedVideoAdCompleted');
-	};
-}, false);
-
-window.unityads.showVideoAd();
-
-window.unityads.showRewardedVideoAd();
-
-alert(window.unityads.loadedVideoAd());//boolean: true or false
-alert(window.unityads.loadedRewardedVideoAd());//boolean: true or false
-
-alert(window.unityads.isShowingVideoAd());//boolean: true or false
-alert(window.unityads.isShowingRewardedVideoAd());//boolean: true or false
+// select the right Ad Id according to platform
+var gameId = "Android or iOS Game ID";
+var videoAdPlacementId = "Video Placement ID";
+var rewardedVideoAdPlacementId = "Rewarded Placement ID";
 ```
-# Examples #
-<a href="https://github.com/hackinc2000/cordova-plugin-ad-unityads2/blob/master/example/basic/index.html">example/basic/index.html</a><br>
 
-# Test #
+Remember to put `isTest = false` when building for production.
 
-[![](http://img.youtube.com/vi/L_TgOf-XwDY/0.jpg)](https://www.youtube.com/watch?v=L_TgOf-XwDY&feature=youtu.be "Youtube")
+## METHODS
 
-You can also run following test apk.
-https://dl.dropboxusercontent.com/u/186681453/pluginsforcordova/unityads/apk.html
+```javascript
+// Initialize UnityAds
+UnityAdsInit(gameId, isTest, isDebug, fn);
 
-# Credits #
+// Video Ads Related (Regular/Rewarded)
+ShowVideoAd(videoPlacementId, fn);
+GetPlacementState(videoAdPlacementId, fn);
 
- Honoring who needts to be honered! Thanks to Cranberrygame for his fantastic cordova-plugin-ad-unityads plugin.
 
-# Original Plugin Repository Information #
-You can see Cordova Plugins in one page: http://cranberrygame.github.io?referrer=github
+## Screenshots
+
+Android Video Ads
+
+![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/android/android_1.png)
+![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/android/android_2.png)
+![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/android/android_3.png)
+
+iOS Video Ads
+![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_1.png)
+![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_2.png)
+![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_3.png)
+
+
+* Important DONT GET BANNED: Please read carfully the [Unity Monetization Services Terms of Service](https://unity3d.com/legal/monetization-services-terms-of-service).
+
+
+## Credits
+
+This project is created and maintained by Waldemar Medina.
+Available for project outsourcing and or consulting services. [Lets Talk](mailto:waldemar_medina@hotmail.com) I can help in your project.
+
+## Donations
+
+If this project help you reduce time to develop, or You simple found it usefull please consider give me a cup of coffee. I like pizza too :)
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4RK9RWFNTBNUA)

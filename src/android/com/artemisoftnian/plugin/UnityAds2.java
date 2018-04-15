@@ -37,14 +37,14 @@ public class UnityAds2 extends CordovaPlugin {
 
     protected static final String TAG = "UnityAds2";
 	protected CallbackContext context;
-	//protected UnityAds UnityAds = new UnityAds();
-	//
+
 	protected String TEST_GAME_ID = "1700140";
 	protected String TEST_VIDEO_AD_PLACEMENT_ID = "video";
 	protected String TEST_REWARDED_VIDEO_AD_PLACEMENT_ID = "rewardedVideo";
-	//
+
 	protected ResultMessage _result = new ResultMessage();
 
+	PluginResult result = new PluginResult(PluginResult.Status.ERROR, "SOMTHING_WENT_WRONG");
 
 	@Override
 	public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -61,13 +61,11 @@ public class UnityAds2 extends CordovaPlugin {
 	@Override
 	public void onResume(boolean multitasking) {
 		super.onResume(multitasking);
-		SendLastMessage(_result.status, _result.message);
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		//
 	}	
 
     @Override
@@ -101,8 +99,11 @@ public class UnityAds2 extends CordovaPlugin {
     private void UnityAdsInit(JSONArray args,  CallbackContext callbackContext){
 
 		String gameId;
+		String msg;
 		Boolean isTest;
 		Boolean isDebug;
+		
+		context = callbackContext;
 
 
 		try{
@@ -135,13 +136,22 @@ public class UnityAds2 extends CordovaPlugin {
 		}
 
 		UnityAds.initialize(this.cordova.getActivity(), gameId, unityAdsListener, isTest);		
-		callbackContext.success("INITIALIZING");
 		UnityAds.setDebugMode(isDebug); //Logs are verbose when set to true, and minimal when false.
+		PluginResult result = new PluginResult(PluginResult.Status.OK, String.format("[\"%s\",\"%s\"]", "UNITYADS", "INITIALIZING"));		
+		result.setKeepCallback(true);
+		callbackContext.sendPluginResult(result);
+
+		result = new PluginResult(PluginResult.Status.OK, String.format("[\"%s\",\"%s\"]", "UNITYADS", "IS_READY"));		
+		result.setKeepCallback(true);
+		callbackContext.sendPluginResult(result);			
+
+
 	}
 
 	private void GetPlacementState(JSONArray args, CallbackContext callbackContext){
 		String videoAdPlacementId;
-		UnityAds.PlacementState result;
+		String msg;	
+		UnityAds.PlacementState state;
 
 		try{
 			videoAdPlacementId = args.getString(0);
@@ -159,25 +169,30 @@ public class UnityAds2 extends CordovaPlugin {
 			videoAdPlacementId = TEST_REWARDED_VIDEO_AD_PLACEMENT_ID;
 		}	
 
-		result = UnityAds.getPlacementState(videoAdPlacementId);
+		state = UnityAds.getPlacementState(videoAdPlacementId);
 
-		if(result == UnityAds.PlacementState.NOT_AVAILABLE){
-			callbackContext.error(String.format("[\"%s\",\"%s\"]", videoAdPlacementId, "NOT_AVAILABLE"));
-		}else if(result == UnityAds.PlacementState.DISABLED){
-			callbackContext.error(String.format("[\"%s\",\"%s\"]", videoAdPlacementId, "DISABLED"));
-		}else if(result == UnityAds.PlacementState.WAITING){
-			callbackContext.error(String.format("[\"%s\",\"%s\"]", videoAdPlacementId, "WAITING"));
-		}else if(result == UnityAds.PlacementState.NO_FILL){
-			callbackContext.error(String.format("[\"%s\",\"%s\"]", videoAdPlacementId, "NO_FILL"));
+		if(state == UnityAds.PlacementState.NOT_AVAILABLE){
+			msg = String.format("[\"%s\",\"%s\"]", videoAdPlacementId, "NOT_AVAILABLE");
+		}else if(state == UnityAds.PlacementState.DISABLED){
+			msg = String.format("[\"%s\",\"%s\"]", videoAdPlacementId, "DISABLED");
+		}else if(state == UnityAds.PlacementState.WAITING){
+			msg = String.format("[\"%s\",\"%s\"]", videoAdPlacementId, "WAITING");
+		}else if(state == UnityAds.PlacementState.NO_FILL){
+			msg = String.format("[\"%s\",\"%s\"]", videoAdPlacementId, "NO_FILL");
 		}else{
-			callbackContext.error(String.format("[\"%s\",\"%s\"]", videoAdPlacementId, "READY"));
+			msg = String.format("[\"%s\",\"%s\"]", videoAdPlacementId, "READY");
 		}
+
+		PluginResult result = new PluginResult(PluginResult.Status.OK, msg);
+		result.setKeepCallback(true);
+		callbackContext.sendPluginResult(result);		
 
 	}
 
 	private void ShowVideoAd(JSONArray args, CallbackContext callbackContext){
 		
 		String videoAdPlacementId;
+		String msg;	
 		try{
 			videoAdPlacementId = args.getString(0);
 		}catch(JSONException e){
@@ -202,18 +217,15 @@ public class UnityAds2 extends CordovaPlugin {
 
 		if(UnityAds.isReady()){
 			UnityAds.show(this.cordova.getActivity(), videoAdPlacementId);
+			msg = String.format("[\"%s\",\"%s\"]", videoAdPlacementId, "READY");
 		}else{
-			callbackContext.error(String.format("[\"%s\",\"%s\"]", videoAdPlacementId, "NOT_READY"));
+			msg = String.format("[\"%s\",\"%s\"]", videoAdPlacementId, "NOT_READY");
 		}
-	}
 
+		PluginResult result = new PluginResult(PluginResult.Status.OK, msg);
+		result.setKeepCallback(true);
+		callbackContext.sendPluginResult(result);	
 
-	private void SendLastMessage(PluginResult.Status status, String message){	
-		
-        if(status == PluginResult.Status.OK)
-			context.success(message);
-		else
-		    context.error(message);
 	}
 
 
@@ -221,54 +233,62 @@ public class UnityAds2 extends CordovaPlugin {
 	class UnityAdsListener implements IUnityAdsListener {
 
 		@Override //This method is called when the specified ad placement becomes ready to show an ad campaign.
-		public void onUnityAdsReady(final String zoneId) {
+		public void onUnityAdsReady(final String placementId) {
 
 			Log.d(TAG, String.format("%s", "onUnityAdsReady"));
-			Log.d(TAG, zoneId);
-			
-			_result.message = String.format("[\"%s\",\"%s\"]", zoneId, "READY");
-			_result.status = PluginResult.Status.OK;
+			Log.d(TAG, placementId);
+
+			PluginResult result = new PluginResult(PluginResult.Status.OK, String.format("[\"%s\",\"%s\"]", placementId, "READY"));
+			result.setKeepCallback(true);
+			context.sendPluginResult(result);
 		}
 		
 		@Override //called at the start of video playback for the ad campaign being shown.
-		public void onUnityAdsStart(String zoneId) {
+		public void onUnityAdsStart(String placementId) {
 			Log.d(TAG, String.format("%s", "onUnityAdsStart"));
-			Log.d(TAG, zoneId);
+			Log.d(TAG, placementId);
 	
-			_result.message = String.format("[\"%s\",\"%s\"]", zoneId, "SHOWING");
-			_result.status=PluginResult.Status.OK;			
+			PluginResult result = new PluginResult(PluginResult.Status.OK, String.format("[\"%s\",\"%s\"]", placementId, "SHOWING"));
+			result.setKeepCallback(true);
+			context.sendPluginResult(result);
 		}
 
 		@Override //called after the ad placement is closed.
-		public void onUnityAdsFinish(String zoneId, UnityAds.FinishState result) {
-
-			if(result == UnityAds.FinishState.SKIPPED){
-				_result.message = String.format("[\"%s\",\"%s\"]", zoneId, "SKIPPED");
-			}else if(result == UnityAds.FinishState.COMPLETED){
-				_result.message = String.format("[\"%s\",\"%s\"]", zoneId, "COMPLETED");
+		public void onUnityAdsFinish(String placementId, UnityAds.FinishState state) {
+			String msg;						
+			if(state == UnityAds.FinishState.SKIPPED){
+				msg = String.format("[\"%s\",\"%s\"]", placementId, "SKIPPED");
+			}else if(state == UnityAds.FinishState.COMPLETED){
+				msg = String.format("[\"%s\",\"%s\"]", placementId, "COMPLETED");
 			}else{
-				_result.message = String.format("[\"%s\",\"%s\"]", zoneId, "ERROR");
+				msg = String.format("[\"%s\",\"%s\"]", placementId, "ERROR");
 			}
 
 			Log.d(TAG, String.format("%s", "onUnityAdsFinish"));
-			Log.d(TAG, _result.message);
+			Log.d(TAG, msg);
 
-			_result.status = PluginResult.Status.OK;			
-
+			PluginResult result = new PluginResult(PluginResult.Status.OK, msg);
+			context.sendPluginResult(result);
 		}
 
 		@Override  //called when an error occurs with Unity Ads. 
 		public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
+			String msg;	
+			
 			Log.d(TAG, String.format("%s", "onUnityAdsError"));
 			Log.d(TAG, String.format("%s", message));
-
+			
 			if(error == UnityAds.UnityAdsError.NOT_INITIALIZED){
-				context.error(String.format("[\"%s\",\"%s\"]", message, "NOT_INITIALIZED"));
+				msg = String.format("[\"%s\",\"%s\"]", message, "NOT_INITIALIZED");
 			}else if(error == UnityAds.UnityAdsError.INITIALIZE_FAILED){
-				context.error(String.format("[\"%s\",\"%s\"]", message, "INITIALIZE_FAILED"));
+				msg = String.format("[\"%s\",\"%s\"]", message, "INITIALIZE_FAILED");
 			}else{
-				context.error(String.format("[\"%s\",\"%s\"]", message, "INTERNAL_ERROR"));
+				msg = String.format("[\"%s\",\"%s\"]", message, "INTERNAL_ERROR");
 			}
+
+			PluginResult result = new PluginResult(PluginResult.Status.OK, msg);
+			result.setKeepCallback(true);
+			context.sendPluginResult(result);				
 	
 		}
 

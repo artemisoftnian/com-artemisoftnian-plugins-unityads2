@@ -1,7 +1,7 @@
 {
   "name": "com-artemisoftnian-plugins-unityads2",
   "version": "2.2.0",
-  "description": "Unity Ads plugin for cordova platform",
+  "description": "Monetize your cordova application using the UnityAds API",
   "cordova": {
     "id": "com-artemisoftnian-plugins-unityads2",
     "platforms": [
@@ -9,12 +9,45 @@
       "ios"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2"
+  },
+  "bugs": {
+    "url": "https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/issues"
+  },
   "keywords": [
+    "cordova",
+    "admob",
+    "plugin",
+    "phonegap",
+    "crosswalk",
+    "ionic",
+    "meteor",
+    "ad",
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios",
-    "unityads"
+    "unityads",
+    "unity",
+    "ads",
+    "eclipse",
+    "android-studio",
+    "simple",
+    "easy",
+    "android",
+    "ios",
+    "monetization",
+    "monetisation",
+    "money",
+    "advertisement",
+    "advertising",
+    "earn",
+    "cordova-admob",
+    "admobpro",
+    "artemisoftnian",
+    "hackinc2000"
   ],
-  "author": "Waldemar Medina (hackinc2000)",
+  "author": "Waldemar Medina",
   "license": "MIT"
 }

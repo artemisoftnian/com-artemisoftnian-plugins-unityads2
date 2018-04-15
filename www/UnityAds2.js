@@ -2,7 +2,7 @@ var exec = require('cordova/exec');
 
 var PLUGIN_NAME = 'UnityAds2';
 
-// MAIN FUNCTIONS
+// METHODS
 exports.UnityAdsInit = function(gameId, isTest, isDebug, fn) {
 
     var METHOD_NAME = "UnityAdsInit"; 
