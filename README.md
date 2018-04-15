@@ -101,14 +101,10 @@ GetPlacementState(videoAdPlacementId, fn);
 
 Android Video Ads
 
-![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/android/android_1.png)
-![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/android/android_2.png)
-![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/android/android_3.png)
+![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/android/android_1.png) | ![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/android/android_2.png) | ![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/android/android_3.png)
 
 iOS Video Ads
-![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_1.png)
-![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_2.png)
-![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_3.png)
+![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_1.png) | ![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_2.png) | ![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_3.png)
 
 
 * Important DONT GET BANNED: Please read carfully the [Unity Monetization Services Terms of Service](https://unity3d.com/legal/monetization-services-terms-of-service).
