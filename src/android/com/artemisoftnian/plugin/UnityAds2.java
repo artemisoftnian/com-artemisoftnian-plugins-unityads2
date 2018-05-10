@@ -3,28 +3,15 @@ package com.artemisoftnian.plugin;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.PluginResult;
-import org.apache.cordova.PluginResult.Status;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaWebView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.content.Context;
-import android.widget.Toast;
-import jdk.nashorn.internal.codegen.CompilerConstants.Call;
-import android.app.Activity;
 
 import android.util.Log;
-import android.Manifest;
-
-import java.util.ArrayList;
-
-import com.sun.glass.ui.MenuItem.Callback;
 import com.unity3d.ads.IUnityAdsListener;
 import com.unity3d.ads.UnityAds;
-import com.unity3d.ads.UnityAds.PlacementState;
 
 class ResultMessage{
 	String message;

@@ -108,7 +108,8 @@ iOS Video Ads
 | ![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_1.png) | ![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_2.png) | ![ScreenShot](https://github.com/artemisoftnian/com-artemisoftnian-plugins-unityads2/raw/master/doc/ios/ios_3.png) |
 |--|--|--|
 
-* Important DONT GET BANNED (Remember my little mistake): Please read carfully the [Unity Monetization Services Terms of Service](https://unity3d.com/legal/monetization-services-terms-of-service). And most important: DON'T CLICK ON YOUR OWN APP ADS.  Don't said I havent warn You!
+* Important DON'T GET BANNED (Remember my little mistake): Please read carfully the [Unity Monetization Services Terms of Service](https://unity3d.com/legal/monetization-services-terms-of-service). And most important: DON'T CLICK ON YOUR OWN APP ADS. Don't said I haven't warn You!
+
 
 
 ## Credits
@@ -120,7 +121,7 @@ Check Out my [UnityAds addon for Construct 3](https://www.construct.net/make-gam
 
 ## Donations
 
-Now that You end your reading, (I know You where curious) please consider supporting Artemisoftnian with a donation a cup of coffee or maybe a slice of pizza :)
+Now that You end your reading, (I know You where curious) please consider supporting Artemisoftnian with a donation, a cup of coffee or maybe a slice of pizza :)
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4RK9RWFNTBNUA)
 
