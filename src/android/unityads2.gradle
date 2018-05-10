@@ -6,7 +6,7 @@ repositories{
 }
 
 dependencies {
-   compile(name:'classes', ext:'jar')
+   implementation(name:'classes', ext:'jar')
 }
 
 android {
