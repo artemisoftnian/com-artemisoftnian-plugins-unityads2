@@ -1,4 +1,10 @@
-## UnityAds 2 Plugin 
+THIS CORDOVA PLUGIN HAS BEING DEPRECIATED
+
+You can use now:
+
+[UnityAds3 Cordova Plugin](https://www.npmjs.com/package/com-artemisoftnian-plugins-unityads3)
+
+## UnityAds 2 Plugin
 
 Cordova / PhoneGap Plugin for UnityAds ver 2.x
 
