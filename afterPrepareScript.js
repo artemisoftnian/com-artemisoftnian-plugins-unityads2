@@ -2,7 +2,7 @@ const child_process = require("child_process");
 const path = require("path");
 
 module.exports = function (ctx) {
-  const Q = ctx.requireCordovaModule("q");
+  const Q = ctx.requireCordovaModule("q") to require("q")
 
   if (!ctx.opts.platforms.includes('ios'))
     return;
